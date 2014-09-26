@@ -1,0 +1,28 @@
+ADDI 1 0 3
+STW 1 0 2
+
+ADDI 1 0 0
+STW 1 0 1
+
+ADDI 2 0 2
+POP 1 2 2
+
+SUBI 3 1 1
+SUBI 4 1 2
+
+
+PSH 3 2 1
+BLE 4 0 5
+PSH 4 2 1
+ADDI 2 0 1
+BR 0 0 -10
+
+LDW -1 0 1
+ADDI -1 -1 1
+STW -1 0 1
+SUBI 2 2 2
+END
+BR 0 0 -19
+END
+
+
