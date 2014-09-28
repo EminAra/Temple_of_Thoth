@@ -169,11 +169,11 @@ reg=mem(1,True) #creating a 32 bit register
 pc=0            #Where we are globally
 ir=[]
 #reg[0] should always be zero and reg[27] is for the return values
-reg[26]=int(len(memory)*0.2)        #The heap pointer
+
 reg[27]=0                           #Return value for functions
-reg[28]=int(len(memory)*0.1)        #The Global pointer
+reg[28]=int(len(memory)*0.1)        #The stack pointer, starting at the end, where we are locally
 reg[29]=len(memory)                 #The Frame pointer, value does not change in a function , where we were locally
-reg[30]=0                           #The stack pointer, starting at the end, where we are locally
+reg[30]=0                           #The Link pointer, where we were globally
 
 
 
