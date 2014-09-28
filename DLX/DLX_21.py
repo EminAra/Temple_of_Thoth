@@ -13,7 +13,7 @@ Notes:
 
 
 
-add='test.txt'
+add='lin_time_fibo.txt'
 
 
 
@@ -173,7 +173,7 @@ ir=[]
 reg[27]=0                           #Return value for functions
 reg[28]=int(len(memory)*0.1)        #The stack pointer, starting at the end, where we are locally
 reg[29]=len(memory)                 #The Frame pointer, value does not change in a function , where we were locally
-reg[30]=0                           #The Link pointer, where we were globally
+reg[31]=0                           #The Link pointer, where we were globally
 
 
 
