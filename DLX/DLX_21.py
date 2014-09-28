@@ -9,6 +9,13 @@ Notes:
 
     - More Instructions should be added as required
 """
+#FILE ADDRESS HERE
+
+
+
+add='O(LOG).txt'
+
+
 
 #Memory Function
 def mem(n,reg=False): 
@@ -43,6 +50,10 @@ def execute(op,a,b,c):
         reg[a]=reg[b]/c
         pc+=1
         return
+    elif op=='MODI':
+        reg[a]=reg[b]%c
+        pc+=1
+        return
     elif op=='CMPI':
         reg[a]=reg[b]-c
         pc+=1
@@ -56,6 +67,12 @@ def execute(op,a,b,c):
         memory[reg[b]+c][0]=reg[a]
         pc+=1
         return
+    elif op=='BEQ':
+        if reg[a]==0:
+            pc+=c 
+        else:
+            pc+=1
+        return
     elif op=='BGE':
         if reg[a]>=0:
             pc+=c 
@@ -68,19 +85,29 @@ def execute(op,a,b,c):
         else:
             pc+=1
         return
-    elif op=='BLT':
-        if reg[a]<0:
-            pc+=c 
-        else:
-            pc+=1
-        return
     elif op=='BLE':
         if reg[a]<=0:
             pc+=c 
         else:
             pc+=1
         return
+    elif op=='BLT':
+        if reg[a]<0:
+            pc+=c 
+        else:
+            pc+=1
+        return
+    elif op=='BNE':
+        if reg[a]!=0:
+            pc+=c 
+        else:
+            pc+=1
+        return
     elif op=='BR':
+        pc+=c
+        return
+    elif op=='BSR':
+        reg[31]=pc+1
         pc+=c
         return
     elif op=='POP':
@@ -110,6 +137,10 @@ def execute(op,a,b,c):
         reg[a]=reg[b]/reg[c]
         pc+=1
         return
+    elif op=='MOD':
+        reg[a]=reg[b]%reg[c]
+        pc+=1
+        return
     elif op=='CMP':
         reg[a]=reg[b]-reg[c]
         pc+=1
@@ -121,17 +152,29 @@ def execute(op,a,b,c):
     elif op=='RET':
         pc=reg[c]
         return
+    #F3
+
+    elif op=='JSR':
+        reg[31]=pc+1
+        pc=c
 
 
 #Reading the code
-add='log1.txt'
+
 with open(add,'rb') as f:
     read=f.readlines()
     
-memory=mem(100) #creating an arbitrary sized memory
+memory=mem(1024) #creating an arbitrary sized memory
 reg=mem(1,True) #creating a 32 bit register
-pc=0
+pc=0            #Where we are globally
 ir=[]
+#reg[0] should always be zero and reg[27] is for the return values
+reg[28]=len(memory)*0.1;		#The Global pointer
+reg[29]=len(memory);		     #The Frame pointer, value does not change in a function , where we were locally
+#reg[30]=len(memory);             #The stack pointer, starting at the end, where we are locally
+reg[26]=len(memory)*0.2;	    #The heap pointer
+
+
 
 #Reading the code
 memory[0].pop()#cleaning the zero in register zero
@@ -153,17 +196,14 @@ while True:
         a=int(ir[1])
         b=int(ir[2])
         c=int(ir[3])
-        #print memory[1:11]
-        #print reg
-        #print '--------------------'
         execute(op,a,b,c)
-    print reg
+    #print reg
 
-print memory #Outputting the final memory state
-print '\n\n'
-#print 'memory[4] is c, the answer'
-print memory[1:] #plotting the first 10 Fiboncacci sequence numbers
-print reg
+#print 'Memory: ',memory #Outputting the final memory state
+#print '\n\n'
+
+print 'Memory: ',memory[1:] #plotting the first 10 Fiboncacci sequence numbers
+print 'Register: ',reg
 
 print 'DONE'
     
