@@ -18,7 +18,7 @@ add='lin_time_fibo.txt'
 
 
 #Memory Function
-def mem(n,reg=False): 
+def mem(n,reg=False):
     """Initiates an n-bytes memory, use the reg=True to create a 32 bit register(n=1)"""
     mem=[]
     for i in range(n):
@@ -31,7 +31,7 @@ def mem(n,reg=False):
     return mem
 
 
-#Executing Fucntion      
+#Executing Fucntion
 def execute(op,a,b,c):
     global pc
     if op=='ADDI':
@@ -58,7 +58,7 @@ def execute(op,a,b,c):
         reg[a]=reg[b]-c
         pc+=1
         return
-        
+
     elif op=='LDW':
         reg[a]=memory[reg[b]+c][0]
         pc+=1
@@ -69,37 +69,37 @@ def execute(op,a,b,c):
         return
     elif op=='BEQ':
         if reg[a]==0:
-            pc+=c 
+            pc+=c
         else:
             pc+=1
         return
     elif op=='BGE':
         if reg[a]>=0:
-            pc+=c 
+            pc+=c
         else:
             pc+=1
-        return    
+        return
     elif op=='BGT':
         if reg[a]>0:
-            pc+=c 
+            pc+=c
         else:
             pc+=1
         return
     elif op=='BLE':
         if reg[a]<=0:
-            pc+=c 
+            pc+=c
         else:
             pc+=1
         return
     elif op=='BLT':
         if reg[a]<0:
-            pc+=c 
+            pc+=c
         else:
             pc+=1
         return
     elif op=='BNE':
         if reg[a]!=0:
-            pc+=c 
+            pc+=c
         else:
             pc+=1
         return
@@ -163,7 +163,7 @@ def execute(op,a,b,c):
 
 with open(add,'rb') as f:
     read=f.readlines()
-    
+
 memory=mem(1024) #creating an arbitrary sized memory
 reg=mem(1,True) #creating a 32 bit register
 pc=0            #Where we are globally
@@ -173,8 +173,8 @@ ir=[]
 reg[27]=0                           #Return value for functions
 reg[28]=int(len(memory)*0.1)        #The stack pointer, starting at the end, where we are locally
 reg[29]=len(memory)                 #The Frame pointer, value does not change in a function , where we were locally
-reg[31]=0                           #The Link pointer, where we were globally
-
+reg[30]=0                           #The Link pointer, where we were globally
+reg[31]=0                           #Function input
 
 
 
@@ -183,13 +183,13 @@ memory[0].pop()#cleaning the zero in register zero
 for i,entry in enumerate(read):
     memory[0]+=[entry.split()] #Loading and decoding the code into mem[0]
 
-        
+
 
 while True:
     if not memory[0][pc]:
         pc+=1
         pass
-    
+
     elif memory[0][pc][0]=='END':
         break
     else:
@@ -208,6 +208,3 @@ print 'Memory: ',memory[1:] #plotting the first 10 Fiboncacci sequence numbers
 print 'Register: ',reg
 
 print 'DONE'
-    
-
-
