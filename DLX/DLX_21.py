@@ -13,7 +13,7 @@ Notes:
 
 
 
-add='lin_time_fibo.txt'
+add='Exp_time.txt'
 
 
 
@@ -24,7 +24,7 @@ def mem(n,reg=False):
     for i in range(n):
         mem.append([0])
         if reg==True:
-            for j in range(32):
+            for j in range(31):
                 mem[i]+=[0]
     if n==1:
         mem=mem.pop()
@@ -171,8 +171,9 @@ ir=[]
 #reg[0] should always be zero and reg[27] is for the return values
 
 reg[27]=0                           #Return value for functions      
+reg[28]=int(len(memory)*0.1)        #Global var
 reg[29]=len(memory)                 #The Frame pointer, value does not change in a function , where we were locally
-reg[30]=int(len(memory)*0.1)        #The stack pointer, starting at the end, where we are locally
+reg[30]=len(memory)                 #The stack pointer, starting at the end, where we are locally
 reg[31]=0                           #The Link pointer, where we were globally
 
 
