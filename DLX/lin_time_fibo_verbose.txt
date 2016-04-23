@@ -1,0 +1,54 @@
+#Loading n into mem 1
+ADDI 1 0 n
+STW 1 0 1
+
+#Loading a into mem 2
+ADDI 1 0 0
+STW 2 0 1
+
+#Loading b into mem 3
+ADDI 1 0 1
+STW 3 0 1
+
+#Loading c into mem 4 (0)
+ADDI 1 0 0
+STW 4 0 1
+
+#Loading i into mem 5
+ADDI 1 0 1
+STW 5 0 1
+
+#WhileLoop
+#Loading i into reg 1
+LDW 1 0 5
+
+#Loading n into reg 2
+LDW 2 0 1
+#Comparing the difference in reg 3
+CMP 3 1 2
+#Deciding where to go
+BGE 3 0 13
+
+#loadAbCA<bB<cIplus1
+#Loading A into reg 4
+LDW 4 0 2
+#Loading B into reg 5
+LDW 5 0 3
+#Loading the sum of A and B into reg 6
+ADD 6 4 5
+#Moving b into a in the reg
+MOV 4 0 5
+#Moving c into b in the reg
+MOV 5 0 6
+#Storing a in mem 2
+STW 2 0 4
+#Storing b in mem 3
+STW 3 0 5
+#Storing c in mem 4
+STW 4 0 6
+#Incrementing i in reg 1
+ADDI 1 1 1
+#Storing i in mem 5
+STW 5 0 1
+#Jumping back 
+BR 0 0 
