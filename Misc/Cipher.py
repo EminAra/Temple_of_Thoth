@@ -25,7 +25,7 @@ class Cipher(object):
 
         temp = ''
         for i,letter in enumerate(string):
-            temp+= table[letter][key[i%len(key)]]
+            temp+= self.table[letter][key[i%len(key)]]
 
         encrypted = ''
         #everytime we add a space the letter falls behind by one letter, this j will account for that
