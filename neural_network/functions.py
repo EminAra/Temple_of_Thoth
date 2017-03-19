@@ -11,3 +11,11 @@ def linear_combination(variables, weights):
     Where m is the number of features and n is the number of classes/neurons.
     """
     return np.dot(variables, weights.T)
+
+
+def activation(expression): # noqa # ReLU for now
+    return 0 if expression <= 0 else expression
+
+
+def softmax(expression):  # noqa
+    pass

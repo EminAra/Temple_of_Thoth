@@ -12,4 +12,6 @@ def test_linear_combination():  # noqa
     assert linear_combination(weights, variables) == 50
 
 def test_activation():  # noqa
-    pass
+    weights = np.array([4, 2, 6, 7])
+    variables = np.array([1, 0, 3, 100])
+    assert activation(linear_combination(weights, variables))
