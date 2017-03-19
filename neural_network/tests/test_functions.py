@@ -2,7 +2,8 @@ import numpy as np  # noqa
 
 from ..functions import (
     activation,
-    linear_combination
+    linear_combination,
+    softmax,
 )
 
 
@@ -15,3 +16,8 @@ def test_activation():  # noqa
     weights = np.array([4, 2, 6, 7])
     variables = np.array([1, 0, 3, 100])
     assert activation(linear_combination(weights, variables))
+
+def test_softmax():  # noqa
+    weights = np.array([4, 2, 6, 7])
+    variables = np.array([1, 0, 3, 100])
+    assert 0 <= softmax(linear_combination(weights, variables)) <= 1

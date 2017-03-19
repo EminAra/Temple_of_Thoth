@@ -18,4 +18,4 @@ def activation(expression): # noqa # ReLU for now
 
 
 def softmax(expression):  # noqa
-    pass
+    return 1 / (1 + np.exp(-expression))
