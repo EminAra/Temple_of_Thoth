@@ -46,4 +46,5 @@ Temporary Items
 # Python
 *.pyc
 .cache
+.ipynb*
 __pytest__
