@@ -1,0 +1,6 @@
+version: '2'
+services:
+  scheme:
+    image: kisom/mit-scheme
+    volumes:
+      - ".:/sicp/"

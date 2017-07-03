@@ -1,0 +1,1 @@
+Run `docker-compose run sicp sh` to start the SCHEME container
