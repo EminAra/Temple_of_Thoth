@@ -1,0 +1,6 @@
+version: '2'
+services:
+  rust:
+    image: jimmycuadra/rust
+    volumes:
+      - ".:/Rust/"
